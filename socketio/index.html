@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <style>
+    @font-face {
+  src: url(https://code.s3.yandex.net/web-code/fonts/SuisseIntl-Book.woff);
+  font-family: 'Suisse';
+  font-weight: normal;
+}
+
+@font-face {
+  src: url(https://code.s3.yandex.net/web-code/fonts/SuisseIntl-Bold.woff
+);
+  font-family: 'Suisse';
+  font-weight: bold;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: #323131;
+  color: white;
+  position: relative;
+  max-width: 540px;
+  min-height: 100%;
+  margin: 0 auto;
+  font-family: 'Suisse';
+  box-sizing: border-box;
+  padding: 36px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0;
+}
+
+.button {
+  width: 130px;
+  height: 40px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  border: 1px solid white;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.button:hover {
+  opacity: 0.5;
+}
+
+.image {
+  width: 80%;
+  display: block;
+  margin: 60px auto 50px;
+}
+
+.advice {
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 70px;
+}
+
+.footer {
+  font-size: 16px;
+  margin: 0;
+  position: absolute;
+  bottom: 36px;
+}
+
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Procrastinate.</title>
+</head>
+<body>
+<div class="button">Ещё идея</div>
+<span class="phrase">Не писать код, а</span>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script>
+socket = io.connect('http://localhost:5000');
+
+socket.on('connect',function() {
+  console.log('Client has connected to the server!');
+});
+
+socket.on('msg',function(data) {
+  console.log('Received a message from the server!',data);
+});
+
+socket.on('disconnect',function() {
+  console.log('The client has disconnected!');
+});
+
+// Sends a message to the server via sockets
+function send(message) {
+  socket.emit('msg',message);
+};
+
+let button = document.querySelector('.button');
+let data = document.querySelector('.phrase');
+
+button.addEventListener('click', function () {
+  data.innerHTML += 'kok<br/>'
+  send("suck my cock");
+});
+
+
+</script>
+</body>
+</html>
